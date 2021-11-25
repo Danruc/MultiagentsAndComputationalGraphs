@@ -1,0 +1,4 @@
+---
+applications:
+ - name: MultiagentesServer
+   random-route: true
