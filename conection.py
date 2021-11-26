@@ -7,14 +7,14 @@ import logging
 import json
 
 import numpy as np
-import tiposNodos
+import nodos
 
 size = 3
 percent = 50
 
 def initCity(size, percent):
-    grafo = tiposNodos.City(size, percent)
-    city = tiposNodos.City(size, percent)
+    grafo = nodos.City(size, percent)
+    city = nodos.City(size, percent)
     graph = city.getCity()
     print(type(graph))
 
@@ -28,7 +28,7 @@ def initCity(size, percent):
 #flock = [Boid(*np.random.rand(2)*30, width, height) for _ in range(5)] #deben coincidir estos con el número de agentes
 
 def updatePositions():
-    city = tiposNodos.City(size, percent)
+    city = nodos.City(size, percent)
     graph = city.getCity()
     return graph
 
