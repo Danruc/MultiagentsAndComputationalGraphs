@@ -52,7 +52,6 @@ class City:
         startPos = [rd.randrange(0, self.size), rd.randrange(0, self.size)]
         pos = startPos
         cont = 0
-        reset = 8
         while self.nodeCount != 0:
             move = rd.choice(directions)
             if self.validPosition(pos, move):
@@ -67,7 +66,7 @@ class City:
         directions = [[-1, 0], [1, 0], [0, 1], [0, -1]]
         for key, value in self.cityGraph.items():
             for y, x in directions:
-                if self.validPosition(key, [y,x]):
+                if self.validPosition(key, [y,x]) and self.cityMap[key[0]+y][key[1]+x] == 0:
                     self.cityGraph[key].append(Street(key, (key[0]+y, key[1]+x)))
         self.showGraph()
 
@@ -86,11 +85,11 @@ class City:
 
     def showGraph(self):
         for key, value in self.cityGraph.items():
-            print(key)
+            print(key, len(value))
             for val in value:
                 print(val)
 
     def getCity(self):
         return self.cityGraph
     
-City(4, 65)
+City(5, 60)
