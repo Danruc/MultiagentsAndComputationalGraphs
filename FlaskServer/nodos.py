@@ -10,7 +10,7 @@ class Street:
         self.inicio = inicio
         self.fin = fin
         self.peso = 0
-       
+
     def addCar(self):
         self.peso += 1
     
@@ -59,20 +59,25 @@ class City:
                 if self.cityMap[pos[0]][pos[1]] == 1:
                     cont += 1
                     self.cityMap[pos[0]][pos[1]] = 0
-                    self.cityGraph[(pos[0], pos[1])] = []
+                    string = str(pos[0]) + "," + str(pos[1])
+                    self.cityGraph[string] = []
                     self.nodeCount -= 1
 
     def matrixToGraph(self):
         directions = [[-1, 0], [1, 0], [0, 1], [0, -1]]
         for key, value in self.cityGraph.items():
             for y, x in directions:
-                if self.validPosition(key, [y,x]) and self.cityMap[key[0]+y][key[1]+x] == 0:
-                    self.cityGraph[key].append(Street(key, (key[0]+y, key[1]+x)))
+                if self.validPosition(key, [y,x]) and self.cityMap[int(key[0])+y][int(key[-1])+x] == 0:
+                    strett = Street(key, (int(key[0])+y, int(key[-1])+x))
+                    self.cityGraph[key].append(strett.getStreet())
         self.showGraph()
 
     def validPosition(self, currPos, move):
-        newY = currPos[0] + move[0]
-        newX = currPos[1] + move[1]
+        xPos = int(currPos[0])
+        yPos = int(currPos[-1])
+        newX = xPos + move[0]
+        newY = yPos + move[1]
+
         if newX < self.size and  newX >= 0 and newY < self.size and  newY >= 0:
             return True
         return False
@@ -91,5 +96,3 @@ class City:
 
     def getCity(self):
         return self.cityGraph
-    
-City(5, 60)
