@@ -105,9 +105,7 @@ class Streets(Model):
             self.grid.place_agent(b,(6, i))
             self.grid.place_agent(c, (i,5))
             self.grid.place_agent(d, (i,6))
-    def checkLights():
-        for i in range(4):
-            print(self.schedule)
+
     def step(self):
         self.schedule.step()
     
