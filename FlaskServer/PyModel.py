@@ -114,8 +114,8 @@ class TrafficLight(Agent):
 class City(Model):
     def __init__(self, N, width, height):
         global finput
-        finput = open("map.txt")
-        #finput = open("D:\MultiagentsAndComputationalGraphs\FlaskServer\map.txt")
+        #finput = open("map.txt")
+        finput = open("D:\MultiagentsAndComputationalGraphs\FlaskServer\map.txt")
         self.grid = MultiGrid(width, height, True)
         self.schedule = RandomActivation(self)
         self.running = True
