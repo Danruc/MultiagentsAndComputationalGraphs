@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, jsonify
 import json, logging, os, atexit
-import nuevo
+import PyModel
 
 
 app = Flask(__name__, static_url_path='')
@@ -10,7 +10,7 @@ port = int(os.getenv('PORT', 8000))
 @app.route('/main/<int:N>', methods=['GET', 'POST'])
 def main(N):
     global city
-    city = nuevo.City(N,10,10)
+    city = PyModel.City(N,10,10)
     city.showGraph()
     return "Ciudad creada"
 

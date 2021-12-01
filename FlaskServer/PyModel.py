@@ -22,25 +22,18 @@ class Car(Agent):
         self.pos = newPos
 
     def move(self):
-        print("entro al move")
         #checar si ya llego al destino?
         if(self.pos == (self.end[0],self.end[1])):
             self.getDestiny()
-            print("primer if")
         else:
             #ruta mas rapida
             #nos regresa una lista
             posibleMove = self.bestRute()
-            print("despues de bestrute")
             isCar = self.model.isCar(posibleMove)
-            print("despues de iscar")
             isTl = self.model.isTrafficLight(posibleMove,self.pos)
-            print("despues de istraffic")
-
             #checamos coche y semaforo
             if(not isCar and isTl):
                 self.model.grid.move_agent(self, (posibleMove[0],posibleMove[1]))
-            print("termino")
     
     def bestRute(self):
         #las posibles direcciones del agente
@@ -82,6 +75,7 @@ class Car(Agent):
     def __str__(self): 
         return "{} -> {}".format(self.inicio, self.fin)
 
+
 class TrafficIntersection(Agent):
     def __init__(self, unique_id, model, tl1, tl2):
         super().__init__(unique_id, model)
@@ -96,9 +90,8 @@ class TrafficIntersection(Agent):
             self.state = random.choice([False, True])
             self.tl1.setState(self.state)
             self.tl2.setState(not(self.state))
-            print(self.tl1.unique_id, self.tl1.state)
-            print(self.tl2.unique_id, self.tl2.state)
             self.steps = 4
+
 
 class TrafficLight(Agent):
     def __init__(self, unique_id, model, posFlow):
@@ -134,7 +127,6 @@ class City(Model):
         self.initCarritos()
         finput.close()
 
-
     def isTrafficLight(self, posMov, carPos):
         actualPosID = str(carPos[0])+str(carPos[1])+str(posMov[0])+str(posMov[1])
         streetLightID = []
@@ -145,7 +137,6 @@ class City(Model):
             elif(i.tl2.unique_id == actualPosID):
                 return i.tl2.state
         return True;
-
 
     def isCar(self, carPos):
         carsPosition = (carPos[0],carPos[1])
