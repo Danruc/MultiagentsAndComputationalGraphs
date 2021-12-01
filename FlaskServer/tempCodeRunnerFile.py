@@ -1,1 +1,0 @@
-city = nodos.City(size, percent, N)
